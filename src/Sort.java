@@ -1,4 +1,12 @@
 public class Sort {
+    /**
+     * Sorts given num list in asc order. Splits list into two lists recursively until there each list has only one element.
+     * O notation:
+     * Time: O(n log n) because merge sort splits the lists and sequentially (linear time) merges them
+     * Space: O(n) beause even though we're splitting the arrays, those arrays are not going to be larger than the original. Hence, at it's worst, O(n)
+     * @param list an integers array
+     * @return a sorted list.
+     */
     public int[] mergeSort(int[] list) {
         if (list.length <=1 ) {
             return list;
