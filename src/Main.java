@@ -11,10 +11,10 @@ public class Main {
     }
     private static int[] randomNumbers() {
         Random rand = new Random();
-        int[] randomNumbers = new int[50];
+        int[] randomNumbers = new int[30000];
 
         for (int i = 0; i < randomNumbers.length; i++) {
-            randomNumbers[i] = rand.nextInt(200);
+            randomNumbers[i] = rand.nextInt(1000);
         }
         return randomNumbers;
     }
