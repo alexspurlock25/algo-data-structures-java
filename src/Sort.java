@@ -1,4 +1,24 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Sort {
+    public int[] bubbleSort(int[] list) {
+        boolean swapped = true;
+        while (swapped) {
+            swapped = false;
+            for (int i = 0; i < list.length - 1; i++) {
+                if (list[i] > list[i + 1]) {
+                    int temp = list[i];
+                    list[i] = list[i + 1];
+                    list[i + 1] = temp;
+                    swapped = true;
+                }
+            }
+        }
+        return list;
+    }
+
     /**
      * Sorts given num list in asc order. Splits list into two lists recursively until there each list has only one element.
      * O notation:
@@ -57,4 +77,56 @@ public class Sort {
 
         return sortedArr;
     }
+
+    public List<Integer> mergeSort(List<Integer> list) {
+        if (list.size() <= 1) return list;
+
+        List<List<Integer>> splitArr = split(list);
+        List<Integer> left = mergeSort(splitArr.get(0));
+        List<Integer> right = mergeSort(splitArr.get(1));
+        return merge(left, right);
+    }
+    public List<List<Integer>> split(List<Integer> list) {
+        List<List<Integer>> newList = new ArrayList<>();
+        int mid = list.size() / 2;
+
+        List<Integer> left = list.subList(0, mid);
+        List<Integer> right = list.subList(mid, list.size());
+
+//        for (int i = 0; i < mid; i++) {
+//            left.add(list.get(i));
+//        }
+//        for (int i = mid; i < list.size(); i++) {
+//            right.add(list.get(i));
+//        }
+
+        newList.add(left);
+        newList.add(right);
+        return newList;
+    }
+    public List<Integer> merge(List<Integer> left, List<Integer> right) {
+        int i = 0, j = 0;
+        List<Integer> sortedArr = new ArrayList<>();
+        while (i < left.size() && j < right.size()) {
+            if (left.get(i) < right.get(j)) {
+                sortedArr.add(left.get(i));
+                i++;
+            } else {
+                sortedArr.add(right.get(j));
+                j++;
+            }
+        }
+
+        while (i < left.size()) {
+            sortedArr.add(left.get(i));
+            i++;
+        }
+        while (j < right.size()) {
+            sortedArr.add(right.get(j));
+            j++;
+        }
+
+        return sortedArr;
+    }
+
 }
