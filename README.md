@@ -1,7 +1,16 @@
 # algo-data-structures-java
 Me learning data structures and algorithms using java. VERY FUN.
 
-# TODO:
+## Sorting Algorithms
+- Merge Sort
+  - `int[]` and `List<Integer>`
+- Bubble Sort
+- Bogo Sort
+
+## Searching Algorithms
+- Linear Search
+- Binary Search
+
+## TODO:
 - Add quicksort
-- Add bubblesort
 - Drink some coffee
