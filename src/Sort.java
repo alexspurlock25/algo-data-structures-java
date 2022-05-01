@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Sort {
     public int[] bubbleSort(int[] list) {
@@ -18,7 +16,37 @@ public class Sort {
         }
         return list;
     }
-    
+    public int[] bogoSort(int[] list) {
+        if (isSorted(list)) return list;
+        while (!isSorted(list)) {
+            list = shuffleList(list);
+        }
+        return list;
+    }
+    private int[] shuffleList(int[] list) {
+        int[] newList = new int[list.length];
+        Stack<Integer> visitedIndex = new Stack<>();
+
+        for (int i = 0; i < list.length; i++) {
+            int randomIndex = new Random().nextInt(list.length);
+            if (!visitedIndex.contains(randomIndex)) {
+                newList[i] = list[randomIndex];
+                visitedIndex.add(randomIndex);
+            } else {
+                i--;
+            }
+        }
+        return newList;
+    }
+    private boolean isSorted(int[] list) {
+        // length - 1 in loop because we're checking current to next item.
+        // we would get index out of bounds without this
+        for (int i = 0; i < list.length - 1; i++)
+            if (list[i] > list[i + 1])
+                return false;
+        return true;
+    }
+
     /**
      * Sorts given num list in asc order. Splits list into two lists recursively until there each list has only one element.
      * O notation:
