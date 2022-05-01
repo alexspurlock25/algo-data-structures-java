@@ -1,9 +1,10 @@
 import java.util.*;
 
 public class Sort {
+    
     /**
      * Bubble Sort is a sorting algorithm that swaps two elements next to each other if they are out of order as our index is increasing, until the whole list is sorted.
-     * Here we are sorted the list in place.
+     * Here we are sorting the given list in place.
      * Time: O(n^2) at its worst. O(n) for iterating, and another O(n - 1) or O(n) for comparisons
      * @param list A list of numbers
      * @return A sorted list of number
