@@ -1,11 +1,12 @@
 import java.util.*;
 
 public class Sort {
-    
+
     /**
      * Bubble Sort is a sorting algorithm that swaps two elements next to each other if they are out of order as our index is increasing, until the whole list is sorted.
      * Here we are sorting the given list in place.
      * Time: O(n^2) at its worst. O(n) for iterating, and another O(n - 1) or O(n) for comparisons
+     * Space:
      * @param list A list of numbers
      * @return A sorted list of number
      */
@@ -23,8 +24,16 @@ public class Sort {
         }
         return list;
     }
+
+    /**
+     * I saw someone on YouTube dong this and I thought that this was a really good idea.
+     * Whatever list we pass, it will swap the elements in that list in place... pretty cool.
+     * @param list A List that we're swapping elements in.
+     * @param index1 Position of the first element that we're swapping.
+     * @param index2 Position of the second element that we're swapping.
+     */
     private void swap(int[] list, int index1, int index2) {
-        int temp = list[index1];
+        int temp = list[index1]; // hold my beer so that I don't lose it
         list[index1] = list[index2];
         list[index2] = temp;
     }
@@ -61,7 +70,6 @@ public class Sort {
 
     /**
      * Sorts given num list in asc order. Splits list into two lists recursively until there each list has only one element.
-     * O notation:
      * Time: O(n log n) because merge sort splits the lists and sequentially (linear time) merges them
      * Space: O(n) beause even though we're splitting the arrays, those arrays are not going to be larger than the original. Hence, at it's worst, O(n)
      * @param list an integers array
