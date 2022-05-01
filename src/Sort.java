@@ -1,20 +1,31 @@
 import java.util.*;
 
 public class Sort {
+    /**
+     * Bubble Sort is a sorting algorithm that swaps two elements next to each other if they are out of order as our index is increasing, until the whole list is sorted.
+     * Here we are sorted the list in place.
+     * Time: O(n^2) at its worst. O(n) for iterating, and another O(n - 1) or O(n) for comparisons
+     * @param list A list of numbers
+     * @return A sorted list of number
+     */
     public int[] bubbleSort(int[] list) {
-        boolean swapped = true;
-        while (swapped) {
-            swapped = false;
-            for (int i = 0; i < list.length - 1; i++) {
-                if (list[i] > list[i + 1]) {
-                    int temp = list[i];
-                    list[i] = list[i + 1];
-                    list[i + 1] = temp;
-                    swapped = true;
+        boolean isSorted = false;
+        for (int pass = 0; pass < list.length; pass++) {
+            isSorted = true;
+            for (int i = 1; i < list.length - pass; i++) // note the i = 1
+                if (list[i] < list[i - 1]) {
+                    swap(list, i, i - 1);
+                    isSorted = false;
                 }
-            }
+            if (isSorted)
+                return list;
         }
         return list;
+    }
+    private void swap(int[] list, int index1, int index2) {
+        int temp = list[index1];
+        list[index1] = list[index2];
+        list[index2] = temp;
     }
     public int[] bogoSort(int[] list) {
         if (isSorted(list)) return list;
