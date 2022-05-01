@@ -1,13 +1,18 @@
+import java.util.Arrays;
 import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
         Sort sort = new Sort();
-        int[] sorted = sort.mergeSort(randomNumbers(1000, 17));
+        Search search = new Search();
 
-        for (int num : sorted) {
-            System.out.println(num);
-        }
+        // get 100 random numbers between 0 and 100
+        int[] nums = sort.mergeSort(randomNumbers(100, 101));
+        // look for target in the list
+        int target = 1;
+
+        // code here...
+
     }
     
     /**
@@ -24,5 +29,10 @@ public class Main {
             randomNumbers[i] = rand.nextInt(bound);
         }
         return randomNumbers;
+    }
+    public static void log(Object ... anything) {
+        for (Object something : anything) {
+            System.out.println(something);
+        }
     }
 }
