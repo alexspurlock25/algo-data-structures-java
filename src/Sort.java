@@ -18,7 +18,7 @@ public class Sort {
         }
         return list;
     }
-
+    
     /**
      * Sorts given num list in asc order. Splits list into two lists recursively until there each list has only one element.
      * O notation:
@@ -86,7 +86,7 @@ public class Sort {
         List<Integer> right = mergeSort(splitArr.get(1));
         return merge(left, right);
     }
-    public List<List<Integer>> split(List<Integer> list) {
+    private List<List<Integer>> split(List<Integer> list) {
         List<List<Integer>> newList = new ArrayList<>();
         int mid = list.size() / 2;
 
@@ -104,7 +104,7 @@ public class Sort {
         newList.add(right);
         return newList;
     }
-    public List<Integer> merge(List<Integer> left, List<Integer> right) {
+    private List<Integer> merge(List<Integer> left, List<Integer> right) {
         int i = 0, j = 0;
         List<Integer> sortedArr = new ArrayList<>();
         while (i < left.size() && j < right.size()) {
