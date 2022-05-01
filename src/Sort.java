@@ -42,31 +42,42 @@ public class Sort {
     /**
      * Bogo Sort is sorting algorithm that (tries) to sort a list by shuffling the contents of a list. As long as the
      * list is not sorting, the algorithm will keep shuffling, and shuffling, and shuffling, etc.
-     * @param list
-     * @return
+     * @param list A list to sort.
+     * @return A sorted list. It will take forever if the list is too large.
      */
     public int[] bogoSort(int[] list) {
         if (isSorted(list)) return list;
         while (!isSorted(list))
-            list = shuffleList(list);
+            shuffleList(list);
 
         return list;
     }
-    private int[] shuffleList(int[] list) {
-        int[] newList = new int[list.length];
-        Stack<Integer> visitedIndex = new Stack<>();
 
+    /**
+     * This algo shuffles a given list in place.
+     * @param list A list to shuffle.
+     */
+    private void shuffleList(int[] list) {
+        Stack<Integer> visitedIndex = new Stack<>();
         for (int i = 0; i < list.length; i++) {
             int randomIndex = new Random().nextInt(list.length);
             if (!visitedIndex.contains(randomIndex)) {
-                newList[i] = list[randomIndex];
+                swap(list, i, randomIndex);
                 visitedIndex.add(randomIndex);
             } else {
+                // if we visited the randomIndex before, we need to try the same index on the next run with a different
+                // index
                 i--;
             }
         }
-        return newList;
     }
+
+    /**
+     * This algorithm checks if a list is sorted.
+     * Time: O(n) at worst if the last two elements ar our of order.
+     * @param list A List to check if sorted.
+     * @return True if the list is sorted. False, if otherwise.
+     */
     private boolean isSorted(int[] list) {
         // length - 1 in loop because we're checking current to next item.
         // we would get index out of bounds without this
@@ -82,7 +93,7 @@ public class Sort {
      * the given list until the list is broken down into smaller lists. It keeps doing this until each list has just
      * one element. Then, we (conquer) merge. As we're merging, we're comparing and sorting items from list A to list B.
      * Time: O(n log n) because merge sort splits the lists and sequentially (linear time) merges them
-     * Space: O(n) beause even though we're splitting the arrays, those arrays are not going to be larger than the original. Hence, at it's worst, O(n)
+     * Space: O(n) because even though we're splitting the arrays, those arrays are not going to be larger than the original. Hence, at it's worst, O(n)
      * @param list an integers array
      * @return a sorted list.
      */
@@ -100,6 +111,7 @@ public class Sort {
         int[] left = new int[midpoint]; //     len = 4
         int[] right = new int[list.length - midpoint]; // 9 - 4 = 5. len = 5
 
+        // Manual copy. We could use Java's api to copy
         for (int i = 0; i < midpoint; i++) {
             left[i] = list[i];
         }
@@ -137,6 +149,16 @@ public class Sort {
         return sortedArr;
     }
 
+    /**
+     * Merge Sort is a sorting algorithm that uses Divide and Conquer methodology to sort lists. The idea is that
+     * problems can be solved better if they are broken down into smaller problems. Merge Sort first keeps dividing
+     * the given list until the list is broken down into smaller lists. It keeps doing this until each list has just
+     * one element. Then, we (conquer) merge. As we're merging, we're comparing and sorting items from list A to list B.
+     * Time: O(n log n) because merge sort splits the lists and sequentially (linear time) merges them
+     * Space: O(n) because even though we're splitting the arrays, those arrays are not going to be larger than the original. Hence, at it's worst, O(n)
+     * @param list an integers array
+     * @return a sorted list.
+     */
     public List<Integer> mergeSort(List<Integer> list) {
         if (list.size() <= 1) return list;
 
