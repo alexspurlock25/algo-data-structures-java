@@ -3,7 +3,8 @@ import java.util.*;
 public class Sort {
 
     /**
-     * Bubble Sort is a sorting algorithm that swaps two elements next to each other if they are out of order as our index is increasing, until the whole list is sorted.
+     * Bubble Sort is a sorting algorithm that swaps two elements next to each other if they are out of order as our
+     * index is increasing, until the whole list is sorted.
      * Here we are sorting the given list in place.
      * Time: O(n^2) at its worst. O(n) for iterating, and another O(n - 1) or O(n) for comparisons
      * Space:
@@ -37,11 +38,18 @@ public class Sort {
         list[index1] = list[index2];
         list[index2] = temp;
     }
+
+    /**
+     * Bogo Sort is sorting algorithm that (tries) to sort a list by shuffling the contents of a list. As long as the
+     * list is not sorting, the algorithm will keep shuffling, and shuffling, and shuffling, etc.
+     * @param list
+     * @return
+     */
     public int[] bogoSort(int[] list) {
         if (isSorted(list)) return list;
-        while (!isSorted(list)) {
+        while (!isSorted(list))
             list = shuffleList(list);
-        }
+
         return list;
     }
     private int[] shuffleList(int[] list) {
@@ -69,7 +77,10 @@ public class Sort {
     }
 
     /**
-     * Sorts given num list in asc order. Splits list into two lists recursively until there each list has only one element.
+     * Merge Sort is a sorting algorithm that uses Divide and Conquer methodology to sort lists. The idea is that
+     * problems can be solved better if they are broken down into smaller problems. Merge Sort first keeps dividing
+     * the given list until the list is broken down into smaller lists. It keeps doing this until each list has just
+     * one element. Then, we (conquer) merge. As we're merging, we're comparing and sorting items from list A to list B.
      * Time: O(n log n) because merge sort splits the lists and sequentially (linear time) merges them
      * Space: O(n) beause even though we're splitting the arrays, those arrays are not going to be larger than the original. Hence, at it's worst, O(n)
      * @param list an integers array
