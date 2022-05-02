@@ -6,6 +6,7 @@ Me learning data structures and algorithms using java. VERY FUN.
   - `int[]` and `List<Integer>`
 - Bubble Sort
 - Bogo Sort
+- Selection Sort
 
 ## Searching Algorithms
 - Linear Search

@@ -3,6 +3,44 @@ import java.util.*;
 public class Sort {
 
     /**
+     * Selection Sort is a sorting algorithm that looks for the smallest item in the list, then adds it to a new list.
+     * @param list A list to sort.
+     * @return A sorted list.
+     */
+    public int[] selectionSort(int[] list) {
+        int[] sorted = new int[list.length];
+
+        for (int i = 0; i < sorted.length; i++) {
+            int smallestIndex = indexOfSmallest(list);
+            sorted[i] = list[smallestIndex];
+            list = removeAtIndex(list, smallestIndex);
+        }
+        return sorted;
+    }
+
+    private int indexOfSmallest(int[] list) {
+        int smallest = list[0];
+        int smallestIndex = 0;
+        for (int i = 1; i < list.length; i++)
+            if (list[i] < smallest) {
+                smallest = list[i];
+                smallestIndex = i;
+            }
+        return smallestIndex;
+    }
+
+    private int[] removeAtIndex(int[] list, int index) {
+        int[] newList = new int[list.length - 1];
+        for (int i = 0, j = 0; i < list.length; i++) {
+            if (i != index) {
+                newList[j] = list[i];
+                j++;
+            }
+        }
+        return newList;
+    }
+
+    /**
      * Bubble Sort is a sorting algorithm that swaps two elements next to each other if they are out of order as our
      * index is increasing, until the whole list is sorted.
      * Here we are sorting the given list in place.
@@ -27,7 +65,7 @@ public class Sort {
     }
 
     /**
-     * I saw someone on YouTube dong this and I thought that this was a really good idea.
+     * I saw someone on YouTube doing this and I thought that this was a really good idea.
      * Whatever list we pass, it will swap the elements in that list in place... pretty cool.
      * @param list A List that we're swapping elements in.
      * @param index1 Position of the first element that we're swapping.
